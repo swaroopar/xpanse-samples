@@ -3,7 +3,7 @@ version: 1.0
 # The category of the service.
 category: compute
 # The Service provided by the ISV, the name will be shown on the console as a service.
-name: opentofu-ecs
+name: terraform-ecs
 # The version of the service, the end-user can select the version they want to deploy.
 serviceVersion: 1.0.0
 # For the users may have more than one service, the @namespace can be used to separate the clusters.
@@ -12,9 +12,9 @@ namespace: ISV-A
 # Icon for the service.
 icon: |
   data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACg0lEQVR4nO2dP24TURCHf65IxwFcADVHMSUHAKfCHTeIFIocgXAEXITUVrJNjsABYg6AJaBf9MRYeiAWBTn7dmbyfdLI1vqPZvx7M7OzK+tJAAAAAAAAAAAwATNJx5IuJW2S2KWkpcUWipk53ye1T9FEOa6cv3Wwsjf3ZLdVXCVTwrDPjhLAI+XhSNK2ypIwdOZ0ecxGFzG2kE5nji2k05ljC+l05thCOp05trs43Tu3IRBECNI0Q24knTmxGzJEOpEfThAEQdyVrCkyZCXpu6Q3fxwnQyYSZG2L4SOC+MiQuaS39lhDhtBD2uC9hwxBhjiYyHsm9V9M/YP3CPI7TOoNoYc4A0Gc4V2QFZO6L0HWTOq+BJkzqfsSZAgGQwRpA/fUnYEgzuCeujO8zyFD0NQRpA3eM2TFpO5LkDWTui9B5kzqvgQZgqaOIG1gMHQGggQU5My5Pbj/h0SlixhbSKczxxbS6cyxhXQ6c2whnc4c212cfizpueLRZRXks73npWLRIYgv0gpCyWpIyFWUOTYyxBk09QcqyAtJV5J+2D3y8nyhcaFkDfDuH39JO9V4pBVEB2ZGb/ZV0rnZrjo+VqakFeSQ097rSown1fGnlSilfI1BWkEO6SHf7LPv//Laub1W3jMGCPKfgnxAkPYl68q+f2dlas8zStY0ab2omvfOylTJDJr6hNeyTjnt9TcYLqx8laGQwdCBIFOQ9iyLy+8NCbmKMsdGhjiDHuIMBHEGJcsZIRtf5thCOp05tpBOZ45tv23e1raay8KRpC8Rt81bVldjtw42hNzck+3FKPZagZjZCuqT2kW0rVdlDi9NmE0Su5D0KqIYAAAAAAAAAACKz09haty1w+ee7QAAAABJRU5ErkJggg==
-# Reserved for CSP, aws,azure,ali,huawei and ...
+# Reserved for CSP, HuaweiCloud,FlexibleEngine,OpenstackTestLab,PlusServer,RegioCloud and ...
 cloudServiceProvider:
-  name: huawei
+  name: HuaweiCloud
   regions:
     - name: cn-southwest-2
       area: Asia China
@@ -186,7 +186,7 @@ serviceProviderContactDetails:
   emails: [ "test@test.com" ]
 deployment:
   # kind, Supported values are terraform, opentofu.
-  kind: opentofu
+  kind: terraform
   serviceAvailabilityConfigs:
     - displayName: Availability Zone
       varName: availability_zone
@@ -418,14 +418,14 @@ deployment:
     }
 
     data "huaweicloud_images_image" "image" {
-      name            = var.image_name
+      name                  = var.image_name
       most_recent           = true
       enterprise_project_id = "0"
     }
 
-    resource "huaweicloud_compute_instance" "ecs-tofu" {
+    resource "huaweicloud_compute_instance" "ecs-tf" {
       availability_zone  = local.availability_zone
-      name               = "ecs-tofu-${random_id.new.hex}"
+      name               = "ecs-tf-${random_id.new.hex}"
       flavor_id          = var.flavor_id
       security_group_ids = [ local.secgroup_id ]
       image_id           = data.huaweicloud_images_image.image.id
@@ -437,7 +437,7 @@ deployment:
     }
     
     resource "huaweicloud_evs_volume" "volume" {
-      name              = "volume-tofu-${random_id.new.hex}"
+      name              = "volume-tf-${random_id.new.hex}"
       description       = "my volume"
       volume_type       = "SSD"
       size              = 40
@@ -449,16 +449,16 @@ deployment:
     }
     
     resource "huaweicloud_compute_volume_attach" "attached" {
-      instance_id = huaweicloud_compute_instance.ecs-tofu.id
+      instance_id = huaweicloud_compute_instance.ecs-tf.id
       volume_id   = huaweicloud_evs_volume.volume.id
     }
     
-    resource "huaweicloud_vpc_eip" "eip-tofu" {
+    resource "huaweicloud_vpc_eip" "eip-tf" {
        publicip {
          type = "5_sbgp"
       }
       bandwidth {
-        name        = "eip-tofu-${random_id.new.hex}"
+        name        = "eip-tf-${random_id.new.hex}"
         size        = 5
         share_type  = "PER"
         charge_mode = "traffic"
@@ -466,16 +466,16 @@ deployment:
     }
     
     resource "huaweicloud_compute_eip_associate" "associated" {
-      public_ip   = huaweicloud_vpc_eip.eip-tofu.address
-      instance_id = huaweicloud_compute_instance.ecs-tofu.id
+      public_ip   = huaweicloud_vpc_eip.eip-tf.address
+      instance_id = huaweicloud_compute_instance.ecs-tf.id
     }
 
     output "ecs-host" {
-      value = huaweicloud_compute_instance.ecs-tofu.access_ip_v4
+      value = huaweicloud_compute_instance.ecs-tf.access_ip_v4
     }
     
     output "ecs-public-ip" {
-      value = huaweicloud_vpc_eip.eip-tofu.address
+      value = huaweicloud_vpc_eip.eip-tf.address
     }
 
     output "admin_passwd" {

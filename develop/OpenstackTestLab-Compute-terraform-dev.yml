@@ -1,22 +1,22 @@
 # The version of the Xpanse description language
 version: 1.0
 # The category of the service.
-category: middleware
+category: compute
 # The Service provided by the ISV, the name will be shown on the console as a service.
-name: kafka-cluster
+name: openstack-ecs
 # The version of the service, the end-user can select the version they want to deploy.
 serviceVersion: 1.0.0
 # For the users may have more than one service, the @namespace can be used to separate the clusters.
-description: This is an ehanced Kafka cluster services by ISV-A.
+description: This is an enhanced compute services by ISV-A.
 namespace: ISV-A
 # Icon for the service.
 icon: |
-  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAACRAQMAAAAPc4+9AAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAZQTFRF+/v7Hh8gVD0A0wAAAcVJREFUeJzNlc1twzAMhSX44KNH0CgaTd6gK3kUd4McDVTwq/hjiUyaIkV7qNA2/QCFIh+ppxB+svLNEqqBGTC0ANugBOwmCGDCFOAwIWGDOoqoODtN2BdL6wxD9NMTO9tXPa1PqL5M30W5p8lm5vNcF0t7ahSrVguqNqmMokRW4YQucVjBCBWH1Z2g3WDlW2skoYU+2x8JOtGedBF3k2iXMO0j16iUiI6gxzPdQhnU/s2G9pCO57QY2r6hvjPbKJHq7DRTRXT60avtuTRdbrFJI3mSZhNOqYjVbd99YyK1QKWzEqSWrE0k07U60uPaelflMzaaeu1KBuurHSsn572I1KWy2joX5ZBfWbS/VEt50H5P6aL4JxTuyJ/+QCNPX4PWF3Q8Xe1eF9FsLdD2VaOnaP2hWvs+zI58/7i3vH3nRFtDZpyTUNaZkON5XnBNsp8lrmDMrpvBr+b6pUl+4XbkQdndqnzYGzfuJm1JmIWimIbe6dndd/bk7gVce/cJdo3uIeLJl7+I2xTnPek67mjtDeppE7b03Ov+kSfDe3JweW53njxeGfXkaz28VeYd86+af/H8a7hgJKaebILaFzakLfxyfQLTxVB6K1K9KQAAAABJRU5ErkJggg==
-# Reserved for CSP, aws,azure,ali,huawei and ...
+  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACg0lEQVR4nO2dP24TURCHf65IxwFcADVHMSUHAKfCHTeIFIocgXAEXITUVrJNjsABYg6AJaBf9MRYeiAWBTn7dmbyfdLI1vqPZvx7M7OzK+tJAAAAAAAAAAAwATNJx5IuJW2S2KWkpcUWipk53ye1T9FEOa6cv3Wwsjf3ZLdVXCVTwrDPjhLAI+XhSNK2ypIwdOZ0ecxGFzG2kE5nji2k05ljC+l05thCOp05trs43Tu3IRBECNI0Q24knTmxGzJEOpEfThAEQdyVrCkyZCXpu6Q3fxwnQyYSZG2L4SOC+MiQuaS39lhDhtBD2uC9hwxBhjiYyHsm9V9M/YP3CPI7TOoNoYc4A0Gc4V2QFZO6L0HWTOq+BJkzqfsSZAgGQwRpA/fUnYEgzuCeujO8zyFD0NQRpA3eM2TFpO5LkDWTui9B5kzqvgQZgqaOIG1gMHQGggQU5My5Pbj/h0SlixhbSKczxxbS6cyxhXQ6c2whnc4c212cfizpueLRZRXks73npWLRIYgv0gpCyWpIyFWUOTYyxBk09QcqyAtJV5J+2D3y8nyhcaFkDfDuH39JO9V4pBVEB2ZGb/ZV0rnZrjo+VqakFeSQ097rSown1fGnlSilfI1BWkEO6SHf7LPv//Laub1W3jMGCPKfgnxAkPYl68q+f2dlas8zStY0ab2omvfOylTJDJr6hNeyTjnt9TcYLqx8laGQwdCBIFOQ9iyLy+8NCbmKMsdGhjiDHuIMBHEGJcsZIRtf5thCOp05tpBOZ45tv23e1raay8KRpC8Rt81bVldjtw42hNzck+3FKPZagZjZCuqT2kW0rVdlDi9NmE0Su5D0KqIYAAAAAAAAAACKz09haty1w+ee7QAAAABJRU5ErkJggg==
+# Reserved for CSP, HuaweiCloud,FlexibleEngine,OpenstackTestLab,PlusServer,RegioCloud and ...
 cloudServiceProvider:
-  name: scs
+  name: OpenstackTestLab
   regions:
-    - name: RegionA
+    - name: RegionOne
       area: Western Europe
     - name: RegionTwo
       area: Western Europe
@@ -24,46 +24,61 @@ billing:
   # The supported mode of billing (`Fixed`, `Pay per Use`)
   billingModes:
     - Fixed
+  defaultBillingMode: Fixed
 serviceHostingType: self
 # The flavor of the service, the @category/@name/@version/@flavor can locate the specific service to be deployed.
 flavors:
   serviceFlavors:
-    - name: 1-zookeeper-with-3-worker-nodes-normal
+    - name: 1vCPUs-1GB-normal
+      priority: 3
+      # The pricing of the flavor.
+      pricing:
+        # Used to calculate charges when users do not select 'pay_per_use' as the billing mode.
+        fixedPrice:
+          cost: 6.15
+          currency: USD
+          period: monthly
+        isPriceOnlyForManagementLayer: false
+      # Properties for the service, which can be used by the deployment.
+      properties:
+        flavor_name: cirros128
+      features:
+        - High Availability
+        - Low performance
+    - name: 1vCPUs-2GB-normal
       priority: 2
       # The pricing of the flavor.
       pricing:
         # Used to calculate charges when users do not select 'pay_per_use' as the billing mode.
         fixedPrice:
-          cost: 95.00
+          cost: 23.75
           currency: USD
           period: monthly
+        isPriceOnlyForManagementLayer: false
       # Properties for the service, which can be used by the deployment.
       properties:
-        worker_nodes_count: 3
-        flavor_name: SCS-4V:8:20
-        image_name: Ubuntu 20.04
+        flavor_name: cirros256
       features:
         - High Availability
-        - Maximum performance
-    - name: 1-zookeeper-with-3-worker-nodes-performance
+        - Medium Performance
+    - name: 1vCPUs-4GB-normal
       priority: 1
       # The pricing of the flavor.
       pricing:
         # Used to calculate charges when users do not select 'pay_per_use' as the billing mode.
         fixedPrice:
-          cost: 95.00
+          cost: 30.50
           currency: USD
           period: monthly
+        isPriceOnlyForManagementLayer: false
       # Properties for the service, which can be used by the deployment.
       properties:
-        worker_nodes_count: 3
-        flavor_name: SCS-4V:8:20
-        image_name: Ubuntu 20.04
+        flavor_name: cirros512
       features:
         - High Availability
-        - Maximum performance
+        - Maximum Performance
   modificationImpact:
-    isDataLost: true
+    isDataLost: false
     isServiceInterrupted: true
   isDowngradeAllowed: true
 # The contact details of the service.
@@ -87,7 +102,7 @@ deployment:
   # The parameters will be used to generate the API of the managed service.
   variables:
     - name: OS_AUTH_URL
-      description: SCS cloud instance to be used.
+      description: Openstack cloud instance to be used.
       kind: fix_env
       dataType: string
       mandatory: true
@@ -95,12 +110,13 @@ deployment:
         minLength: 1
         maxLength: 256
       sensitiveScope: none
-      value: "https://keystone.services.a.regiocloud.tech"
       modificationImpact:
-        isDataLost: true
+        isDataLost: false
         isServiceInterrupted: true
+      # this is an example test instance of openstack
+      value: "http://119.8.215.244/identity/v3"
     - name: admin_passwd
-      description: The admin password of all nodes in the Kafka cluster instance. If the value is empty, will create a random password.
+      description: The admin password of the compute instance. If the value is empty, will create a random password.
       kind: variable
       dataType: string
       mandatory: false
@@ -108,91 +124,95 @@ deployment:
         minLength: 8
         maxLength: 16
         pattern: ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$
-      sensitiveScope: always
       modificationImpact:
-        isDataLost: true
+        isDataLost: false
+        isServiceInterrupted: true
+    - name: image_name
+      description: The image name of the compute instance. If the value is empty, will use the default value to create compute instance.
+      kind: variable
+      dataType: string
+      example: "cirros-0.5.2-x86_64-disk"
+      mandatory: false
+      value: "cirros-0.5.2-x86_64-disk"
+      modificationImpact:
+        isDataLost: false
         isServiceInterrupted: true
     - name: vpc_name
-      description: The vpc name of all nodes in the Kafka cluster instance. If the value is empty, will use the default value to find or create VPC.
+      description: The vpc name of the compute instance. If the value is empty, will use the default value to find or create VPC.
       kind: variable
       dataType: string
-      example: "kafka-vpc-default"
+      example: "ecs-vpc-default"
       mandatory: false
-      value: "kafka-vpc-default"
+      value: "ecs-vpc-default"
       modificationImpact:
-        isDataLost: true
+        isDataLost: false
         isServiceInterrupted: true
     - name: subnet_name
-      description: The sub network name of all nodes in the Kafka cluster instance. If the value is empty, will use the default value to find or create subnet.
+      description: The sub network name of the compute instance. If the value is empty, will use the default value to find or create subnet.
       kind: variable
       dataType: string
-      example: "kafka-subnet-default"
+      example: "ecs-subnet-default"
       mandatory: false
-      value: "kafka-subnet-default"
+      value: "ecs-subnet-default"
       modificationImpact:
-        isDataLost: true
+        isDataLost: false
         isServiceInterrupted: true
     - name: secgroup_name
-      description: The security group name of all nodes in the Kafka cluster instance. If the value is empty, will use the default value to find or create security group.
+      description: The security group name of the compute instance. If the value is empty, will use the default value to find or create security group.
       kind: variable
       dataType: string
-      example: "kafka-secgroup-default"
-      value: "kafka-secgroup-default"
+      example: "ecs-secgroup-default"
       mandatory: false
+      value: "ecs-secgroup-default"
       modificationImpact:
-        isDataLost: true
+        isDataLost: false
         isServiceInterrupted: true
   deployer: |
     variable "region" {
       type        = string
-      description = "The region to deploy the Kafka cluster instance."
+      description = "The region to deploy the compute instance."
     }
     
     variable "availability_zone" {
       type        = string
       default     = ""
-      description = "The availability zone to deploy the Kafka cluster instance."
+      description = "The availability zone to deploy the compute instance."
     }
     
     variable "flavor_name" {
       type        = string
       default     = "cirros256"
-      description = "The flavor_name of all nodes in the Kafka cluster instance."
+      description = "The flavor_name of the compute instance."
     }
     
     variable "image_name" {
       type        = string
-      description = "The flavor_name of all nodes in the Kafka cluster instance."
+      default     = "cirros-0.5.2-x86_64-disk"
+      description = "The image name of the compute instance."
     }
-
-    variable "worker_nodes_count" {
-      type        = string
-      default     = 3
-      description = "The worker nodes count in the Kafka cluster instance."
-    }
-
+    
     variable "admin_passwd" {
-      type= string
-      default = ""
-      description = "The root password of all nodes in the Kafka cluster instance."
+      type        = string
+      default     = ""
+      description = "The root password of the compute instance."
     }
 
     variable "vpc_name" {
       type        = string
-      default     = "kafka-vpc-default"
-      description = "The vpc name of all nodes in the Kafka cluster instance."
+      default     = "ecs-vpc-default"
+      description = "The vpc name of the compute instance."
     }
-
+    
     variable "subnet_name" {
       type        = string
-      default     = "kafka-subnet-default"
-      description = "The subnet name of all nodes in the Kafka cluster instance."
+      default     = "ecs-subnet-default"
+      description = "The subnet name of the compute instance."
     }
 
     variable "secgroup_name" {
       type        = string
-      default     = "kafka-secgroup-default"
-      description = "The security group name of all nodes in the Kafka cluster instance."
+      default     = "ecs-secgroup-default"
+      description = "The security group name of the compute instance."
     }
     
     terraform {
@@ -250,7 +270,7 @@ deployment:
     resource "openstack_networking_secgroup_v2" "new" {
       count       = length(data.openstack_networking_secgroup_v2.existing) == 0 ? 1 : 0
       name        = "${var.secgroup_name}-${random_id.new.hex}"
-      description = "Kafka cluster security group"
+      description = "Compute security group"
     }
 
     resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_0" {
@@ -269,8 +289,8 @@ deployment:
       direction         = "ingress"
       ethertype         = "IPv4"
       protocol          = "tcp"
-      port_range_min    = 2181
-      port_range_max    = 2181
+      port_range_min    = 8080
+      port_range_max    = 8088
       remote_ip_prefix  = "121.37.117.211/32"
       security_group_id = local.secgroup_id
     }
@@ -280,8 +300,8 @@ deployment:
       direction         = "ingress"
       ethertype         = "IPv4"
       protocol          = "tcp"
-      port_range_min    = 9092
-      port_range_max    = 9093
+      port_range_min    = 9090
+      port_range_max    = 9099
       remote_ip_prefix  = "121.37.117.211/32"
       security_group_id = local.secgroup_id
     }
@@ -301,54 +321,41 @@ deployment:
     }
 
     resource "openstack_compute_keypair_v2" "keypair" {
-      name = "keypair-k8s-${random_id.new.hex}"
+      name = "keypair-ecs-${random_id.new.hex}"
     }
 
-    resource "openstack_compute_instance_v2" "zookeeper" {
+    data "openstack_images_image_v2" "image" {
+      name                  = var.image_name
+      most_recent           = true
+    }
+
+    resource "openstack_compute_instance_v2" "ecs-tf" {
       availability_zone  = local.availability_zone
-      name               = "kafka-zookeeper-${random_id.new.hex}"
-      flavor_name        = var.flavor_name
+      name               = "ecs-tf-${random_id.new.hex}"
+      flavor_name          = var.flavor_name
       security_groups    = [ local.secgroup_name ]
-      image_name           = var.image_name
+      image_id           = data.openstack_images_image_v2.image.id
       key_pair           = openstack_compute_keypair_v2.keypair.name
+      admin_pass         = local.admin_passwd
       network {
         uuid = local.vpc_id
       }
-      user_data = <<EOF
-        #!bin/bash
-        echo root:${local.admin_passwd} | sudo chpasswd
-        sudo systemctl start docker
-        sudo systemctl enable docker
-        sudo docker run -d --name zookeeper-server --privileged=true -p 2181:2181 -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:3.8.1
-      EOF
+    }
+    
+    resource "openstack_blockstorage_volume_v3" "volume" {
+      name              = "volume-tf-${random_id.new.hex}"
+      description       = "my volume"
+      size              = 40
+      availability_zone = local.availability_zone
+    }
+    
+    resource "openstack_compute_volume_attach_v2" "attached" {
+      instance_id = openstack_compute_instance_v2.ecs-tf.id
+      volume_id   = openstack_blockstorage_volume_v3.volume.id
     }
 
-    resource "openstack_compute_instance_v2" "kafka-broker" {
-      count              = var.worker_nodes_count
-      availability_zone  = local.availability_zone
-      name               = "kafka-broker-${count.index}-${random_id.new.hex}"
-      flavor_name        = var.flavor_name
-      security_groups    = [ local.secgroup_name ]
-      image_name           = var.image_name
-      key_pair           = openstack_compute_keypair_v2.keypair.name
-      network {
-        uuid = local.vpc_id
-      }
-      user_data = <<EOF
-        #!bin/bash
-        echo root:${local.admin_passwd} | sudo chpasswd
-        sudo systemctl start docker
-        sudo systemctl enable docker
-        private_ip=$(ifconfig | grep -A1 "eth0" | grep 'inet' | awk -F ' ' ' {print $2}'|awk ' {print $1}')
-        sudo docker run -d --name kafka-server --restart always -p 9092:9092 -p 9093:9093  -e KAFKA_BROKER_ID=${count.index}  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://$private_ip:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_CFG_ZOOKEEPER_CONNECT=${openstack_compute_instance_v2.zookeeper.access_ip_v4}:2181 bitnami/kafka:3.3.2
-      EOF
-      depends_on = [
-        openstack_compute_instance_v2.zookeeper
-      ]
-    }
-
-    output "zookeeper_server" {
-      value = "${openstack_compute_instance_v2.zookeeper.access_ip_v4}:2181"
+    output "ecs-host" {
+      value = openstack_compute_instance_v2.ecs-tf.access_ip_v4
     }
 
     output "admin_passwd" {

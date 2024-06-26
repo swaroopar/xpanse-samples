@@ -1,7 +1,7 @@
 {
   "serviceName": "RDS-MySQL",
   "version": "1.0.0",
-  "csp": "huawei",
+  "csp": "HuaweiCloud",
   "category": "database",
   "flavor": "2vCPUs-4GB-general",
   "region": {

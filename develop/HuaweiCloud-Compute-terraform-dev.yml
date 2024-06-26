@@ -3,7 +3,7 @@ version: 1.0
 # The category of the service.
 category: compute
 # The Service provided by the ISV, the name will be shown on the console as a service.
-name: terraform-ecs-from-git-repo
+name: terraform-ecs
 # The version of the service, the end-user can select the version they want to deploy.
 serviceVersion: 1.0.0
 # For the users may have more than one service, the @namespace can be used to separate the clusters.
@@ -12,9 +12,9 @@ namespace: ISV-A
 # Icon for the service.
 icon: |
   data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACg0lEQVR4nO2dP24TURCHf65IxwFcADVHMSUHAKfCHTeIFIocgXAEXITUVrJNjsABYg6AJaBf9MRYeiAWBTn7dmbyfdLI1vqPZvx7M7OzK+tJAAAAAAAAAAAwATNJx5IuJW2S2KWkpcUWipk53ye1T9FEOa6cv3Wwsjf3ZLdVXCVTwrDPjhLAI+XhSNK2ypIwdOZ0ecxGFzG2kE5nji2k05ljC+l05thCOp05trs43Tu3IRBECNI0Q24knTmxGzJEOpEfThAEQdyVrCkyZCXpu6Q3fxwnQyYSZG2L4SOC+MiQuaS39lhDhtBD2uC9hwxBhjiYyHsm9V9M/YP3CPI7TOoNoYc4A0Gc4V2QFZO6L0HWTOq+BJkzqfsSZAgGQwRpA/fUnYEgzuCeujO8zyFD0NQRpA3eM2TFpO5LkDWTui9B5kzqvgQZgqaOIG1gMHQGggQU5My5Pbj/h0SlixhbSKczxxbS6cyxhXQ6c2whnc4c212cfizpueLRZRXks73npWLRIYgv0gpCyWpIyFWUOTYyxBk09QcqyAtJV5J+2D3y8nyhcaFkDfDuH39JO9V4pBVEB2ZGb/ZV0rnZrjo+VqakFeSQ097rSown1fGnlSilfI1BWkEO6SHf7LPv//Laub1W3jMGCPKfgnxAkPYl68q+f2dlas8zStY0ab2omvfOylTJDJr6hNeyTjnt9TcYLqx8laGQwdCBIFOQ9iyLy+8NCbmKMsdGhjiDHuIMBHEGJcsZIRtf5thCOp05tpBOZ45tv23e1raay8KRpC8Rt81bVldjtw42hNzck+3FKPZagZjZCuqT2kW0rVdlDi9NmE0Su5D0KqIYAAAAAAAAAACKz09haty1w+ee7QAAAABJRU5ErkJggg==
-# Reserved for CSP, aws,azure,ali,huawei and ...
+# Reserved for CSP, HuaweiCloud,FlexibleEngine,OpenstackTestLab,PlusServer,RegioCloud and ...
 cloudServiceProvider:
-  name: huawei
+  name: HuaweiCloud
   regions:
     - name: cn-southwest-2
       area: Asia China
@@ -60,13 +60,13 @@ flavors:
                 resource_size: 5
                 size_measure_id: 15
           licensePrice:
-            cost: 0.50
+            cost: 1.01
             currency: CNY
-            period: hourly
+            period: monthly
           markUpPrice:
-            cost: 0.43
+            cost: 1.02
             currency: CNY
-            period: hourly
+            period: monthly
         # Used to calculate charges when users do not select 'pay_per_use' as the billing mode.
         fixedPrice:
           cost: 172
@@ -109,13 +109,13 @@ flavors:
                 resource_size: 5
                 size_measure_id: 15
           licensePrice:
-            cost: 0.80
+            cost: 12.20
             currency: CNY
-            period: hourly
+            period: yearly
           markUpPrice:
-            cost: 0.72
+            cost: 12.10
             currency: CNY
-            period: hourly
+            period: yearly
         # Used to calculate charges when users do not select 'pay_per_use' as the billing mode.
         fixedPrice:
           cost: 300
@@ -158,13 +158,13 @@ flavors:
                 resource_size: 5
                 size_measure_id: 15
           licensePrice:
-            cost: 1.21
+            cost: 30.21
             currency: CNY
-            period: hourly
+            period: oneTime
           markUpPrice:
-            cost: 1.10
+            cost: 30.10
             currency: CNY
-            period: hourly
+            period: oneTime
         # Used to calculate charges when users do not select 'pay_per_use' as the billing mode.
         fixedPrice:
           cost: 360
@@ -183,7 +183,26 @@ flavors:
   isDowngradeAllowed: true
 # The contact details of the service.
 serviceProviderContactDetails:
-  emails: [ "test@test.com" ]
+  emails: [ "test30@test.com","test31@test.com" ]
+  phones: [ "011-13422222222","022-13344444444" ]
+  chats: [ "test1234","test1235" ]
+  websites: [ "https://hw.com","https://hwcloud.com" ]
+# End user license agreement content of the service.
+eula: |
+  This Acceptable Use Policy ("Policy") lists prohibited conduct and content when using the services provided by or on behalf of HUAWEI CLOUD and its affiliates. This Policy is an integral part of the HUAWEI CLOUD User Agreement ("User Agreement"). The examples and restrictions listed below are not exhaustive. We may update this Policy from time to time, and the updated Policy will be posted on the Website. By continuing to use the Services, you agree to abide by the latest version of this Policy. You acknowledge and agree that we may suspend or terminate the Services if you or your users violate this Policy. Terms used in the User Agreement have the same meanings in this Policy.
+
+  Prohibited Conduct
+  When accessing or using the Services, or allowing others to access or use the Services, you may not:
+  1. Violate any local, national or international laws, regulations and rules;
+  2. Infringe or violate the rights of others, including but not limited to privacy rights or intellectual property rights;
+  3. Engage in, encourage, assist or allow others to engage in any illegal, unlawful, infringing, harmful or fraudulent behavior, including but not limited to any of the following activities: harming or attempting to harm minors in any way, pornography, illegal gambling, illegal VPN construction, Ponzi schemes, cyber attacks, phishing or damage, privately intercepting any system, program or data, monitoring service data or traffic without permission, engaging in virtual currency "mining" or virtual currency transactions;
+  4. Transmit, provide, upload, download, use or reuse, disseminate or distribute any illegal, infringing, offensive, or harmful content or materials, including but not limited to those listed in the "Prohibited Content" below;
+  5. Transmit any data, send or upload any material that contains viruses, worms, Trojan horses, time bombs, keyboard loggers, spyware, adware or any other harmful programs or similar computer code designed to adversely affect the operation or security of any computer hardware or software;
+  6. Attack, interfere with, disrupt or adversely affect any service, hardware, software, system, website or network, including but not limited to accessing or attacking any service, hardware, software, system, website or network using large amounts of automated means (including robots, crawlers, scripts or similar data gathering or extraction methods);
+  7. Access any part of the Service, account or system without authorization, or attempt to do so;
+  8. Violate or adversely affect the security or integrity of the Services, hardware, software, systems, websites or networks;
+  9. Distribute, disseminate or send unsolicited email, bulk email or other messages, promotions, advertising or solicitations (such as "spam");
+  10. Fraudulent offers of goods or services, or any advertising, promotional or other materials containing false, deceptive or misleading statements.
 deployment:
   # kind, Supported values are terraform, opentofu.
   kind: terraform
@@ -253,7 +272,222 @@ deployment:
       modificationImpact:
         isDataLost: false
         isServiceInterrupted: true
-  scriptsRepo:
-    repoUrl: https://github.com/baixinsui/xpanse-samples.git
-    branch: main
-    scriptsPath: huaweicloud/compute/ecs
+  deployer: |
+    variable "region" {
+      type        = string
+      description = "The region to deploy the compute instance."
+    }
+    
+    variable "availability_zone" {
+      type        = string
+      default     = ""
+      description = "The availability zone to deploy the compute instance."
+    }
+    
+    variable "flavor_id" {
+      type        = string
+      default     = "s6.large.2"
+      description = "The flavor_id of the compute instance."
+    }
+    
+    variable "image_name" {
+      type        = string
+      default     = "Ubuntu 22.04 server 64bit"
+      description = "The image name of the compute instance."
+    }
+    
+    variable "admin_passwd" {
+      type        = string
+      default     = ""
+      description = "The root password of the compute instance."
+    }
+
+    variable "vpc_name" {
+      type        = string
+      default     = "ecs-vpc-default"
+      description = "The vpc name of the compute instance."
+    }
+    
+    variable "subnet_name" {
+      type        = string
+      default     = "ecs-subnet-default"
+      description = "The subnet name of the compute instance."
+    }
+
+    variable "secgroup_name" {
+      type        = string
+      default     = "ecs-secgroup-default"
+      description = "The security group name of the compute instance."
+    }
+    
+    terraform {
+      required_providers {
+        huaweicloud = {
+          source  = "huaweicloud/huaweicloud"
+          version = "~> 1.61.0"
+        }
+      }
+    }
+    
+    provider "huaweicloud" {
+      region = var.region
+    }
+
+    data "huaweicloud_availability_zones" "osc-az" {}
+
+    data "huaweicloud_vpcs" "existing" {
+      name = var.vpc_name
+    }
+
+    data "huaweicloud_vpc_subnets" "existing" {
+      name = var.subnet_name
+    }
+
+    data "huaweicloud_networking_secgroups" "existing" {
+      name = var.secgroup_name
+    }
+
+    locals {
+      availability_zone = var.availability_zone == "" ? data.huaweicloud_availability_zones.osc-az.names[0] : var.availability_zone
+      admin_passwd      = var.admin_passwd == "" ? random_password.password.result : var.admin_passwd
+      vpc_id            = length(data.huaweicloud_vpcs.existing.vpcs) > 0 ? data.huaweicloud_vpcs.existing.vpcs[0].id : huaweicloud_vpc.new[0].id
+      subnet_id         = length(data.huaweicloud_vpc_subnets.existing.subnets)> 0 ? data.huaweicloud_vpc_subnets.existing.subnets[0].id : huaweicloud_vpc_subnet.new[0].id
+      secgroup_id       = length(data.huaweicloud_networking_secgroups.existing.security_groups) > 0 ? data.huaweicloud_networking_secgroups.existing.security_groups[0].id : huaweicloud_networking_secgroup.new[0].id
+    }
+
+    resource "huaweicloud_vpc" "new" {
+      count = length(data.huaweicloud_vpcs.existing.vpcs) == 0 ? 1 : 0
+      name  = var.vpc_name
+      cidr  = "192.168.0.0/16"
+    }
+
+    resource "huaweicloud_vpc_subnet" "new" {
+      count      = length(data.huaweicloud_vpcs.existing.vpcs) == 0 ? 1 : 0
+      vpc_id     = local.vpc_id
+      name       = var.subnet_name
+      cidr       = "192.168.10.0/24"
+      gateway_ip = "192.168.10.1"
+    }
+
+    resource "huaweicloud_networking_secgroup" "new" {
+      count       = length(data.huaweicloud_networking_secgroups.existing.security_groups) == 0 ? 1 : 0
+      name        = var.secgroup_name
+      description = "Kafka cluster security group"
+    }
+
+    resource "huaweicloud_networking_secgroup_rule" "secgroup_rule_0" {
+      count             = length(data.huaweicloud_networking_secgroups.existing.security_groups) == 0 ? 1 : 0
+      direction         = "ingress"
+      ethertype         = "IPv4"
+      protocol          = "tcp"
+      port_range_min    = 22
+      port_range_max    = 22
+      remote_ip_prefix  = "121.37.117.211/32"
+      security_group_id = local.secgroup_id
+    }
+
+    resource "huaweicloud_networking_secgroup_rule" "secgroup_rule_1" {
+      count             = length(data.huaweicloud_networking_secgroups.existing.security_groups) == 0 ? 1 : 0
+      direction         = "ingress"
+      ethertype         = "IPv4"
+      protocol          = "tcp"
+      port_range_min    = 8080
+      port_range_max    = 8088
+      remote_ip_prefix  = "121.37.117.211/32"
+      security_group_id = local.secgroup_id
+    }
+
+    resource "huaweicloud_networking_secgroup_rule" "secgroup_rule_2" {
+      count             = length(data.huaweicloud_networking_secgroups.existing.security_groups) == 0 ? 1 : 0
+      direction         = "ingress"
+      ethertype         = "IPv4"
+      protocol          = "tcp"
+      port_range_min    = 9090
+      port_range_max    = 9099
+      remote_ip_prefix  = "121.37.117.211/32"
+      security_group_id = local.secgroup_id
+    }
+
+    resource "random_id" "new" {
+      byte_length = 4
+    }
+
+    resource "random_password" "password" {
+      length           = 12
+      upper            = true
+      lower            = true
+      numeric          = true
+      special          = true
+      min_special      = 1
+      override_special = "#%@"
+    }
+
+    resource "huaweicloud_kps_keypair" "keypair" {
+      name     = "keypair-ecs-${random_id.new.hex}"
+      key_file = "keypair-ecs-${random_id.new.hex}.pem"
+    }
+
+    data "huaweicloud_images_image" "image" {
+      name                  = var.image_name
+      most_recent           = true
+      enterprise_project_id = "0"
+    }
+
+    resource "huaweicloud_compute_instance" "ecs-tf" {
+      availability_zone  = local.availability_zone
+      name               = "ecs-tf-${random_id.new.hex}"
+      flavor_id          = var.flavor_id
+      security_group_ids = [ local.secgroup_id ]
+      image_id           = data.huaweicloud_images_image.image.id
+      key_pair           = huaweicloud_kps_keypair.keypair.name
+      admin_pass         = local.admin_passwd
+      network {
+        uuid = local.subnet_id
+      }
+    }
+    
+    resource "huaweicloud_evs_volume" "volume" {
+      name              = "volume-tf-${random_id.new.hex}"
+      description       = "my volume"
+      volume_type       = "SSD"
+      size              = 40
+      availability_zone = local.availability_zone
+      tags = {
+        foo = "bar"
+        key = "value"
+      }
+    }
+    
+    resource "huaweicloud_compute_volume_attach" "attached" {
+      instance_id = huaweicloud_compute_instance.ecs-tf.id
+      volume_id   = huaweicloud_evs_volume.volume.id
+    }
+    
+    resource "huaweicloud_vpc_eip" "eip-tf" {
+       publicip {
+         type = "5_sbgp"
+      }
+      bandwidth {
+        name        = "eip-tf-${random_id.new.hex}"
+        size        = 5
+        share_type  = "PER"
+        charge_mode = "traffic"
+      }
+    }
+    
+    resource "huaweicloud_compute_eip_associate" "associated" {
+      public_ip   = huaweicloud_vpc_eip.eip-tf.address
+      instance_id = huaweicloud_compute_instance.ecs-tf.id
+    }
+
+    output "ecs-host" {
+      value = huaweicloud_compute_instance.ecs-tf.access_ip_v4
+    }
+    
+    output "ecs-public-ip" {
+      value = huaweicloud_vpc_eip.eip-tf.address
+    }
+
+    output "admin_passwd" {
+      value = var.admin_passwd == "" ? nonsensitive(local.admin_passwd) : local.admin_passwd
+    }
