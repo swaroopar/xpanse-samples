@@ -84,13 +84,13 @@ serviceConfigurationManage:
       runOnlyOnce: false
       ansibleScriptConfig:
         # Name of the file in the script
-        playbookName: "kafka-container-manage.yml"
+        playbookName: "middleware/ansible/kafka/kafka-container-manage.yml"
         # Path to activate virtualenv
         virtualEnv: ""
         # Version of the python
         pythonVersion: 3.11
-        repoUrl: https://github.com/swaroopar/osc
-        branch: feature/testAnsible
+        repoUrl: https://github.com/eclipse-xpanse/xpanse-samples
+        branch: main
         # Full path of the requirements file in GIT repo.
         requirementsFile: "requirements.txt"
         # Install roles and collections
@@ -102,13 +102,13 @@ serviceConfigurationManage:
       runOnlyOnce: true
       ansibleScriptConfig:
         # Name of the file in the script
-        playbookName: "kafka-container-manage.yml"
+        playbookName: "middleware/ansible/kafka/kafka-container-manage.yml"
         # Path to activate virtualenv
         virtualEnv: ""
         # Version of the python
         pythonVersion: 3.11
-        repoUrl: https://github.com/swaroopar/osc
-        branch: feature/testAnsible
+        repoUrl: https://github.com/eclipse-xpanse/xpanse-samples
+        branch: main
         # Full path of the requirements file in GIT repo.
         requirementsFile: "requirements.txt"
         # Install roles and collections
