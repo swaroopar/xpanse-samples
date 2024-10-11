@@ -397,6 +397,6 @@ deployment:
         isDataLost: false
         isServiceInterrupted: true
   scriptsRepo:
-    repoUrl: https://github.com/baixinsui/xpanse-samples.git
+    repoUrl: https://github.com/xpanse/xpanse-samples.git
     branch: main
-    scriptsPath: huaweicloud/compute/ecs
+    scriptsPath: scripts/huaweicloud/compute/ecs
