@@ -5,7 +5,7 @@ category: database
 # The Service provided by the ISV, the name will be shown on the console as a service.
 name: RDS-MySQL
 # The version of the service, the end-user can select the version they want to deploy.
-serviceVersion: 1.0.0
+serviceVersion: 1.0.1
 # For the users may have more than one service, the @namespace can be used to separate the clusters.
 description: This is an enhanced MySQL server service by ISV-A.
 namespace: ISV-A
@@ -221,6 +221,6 @@ deployment:
         isDataLost: false
         isServiceInterrupted: true
   scriptsRepo:
-    repoUrl: https://github.com/xpanse/xpanse-samples.git
+    repoUrl: https://github.com/eclipse-xpanse/xpanse-samples.git
     branch: main
-    scriptsPath: scripts/huaweicloud/database-mysql
+    scriptsPath: scripts/huaweicloud/database/mysql

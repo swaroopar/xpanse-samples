@@ -3,9 +3,9 @@ version: 1.0
 # The category of the service.
 category: compute
 # The Service provided by the ISV, the name will be shown on the console as a service.
-name: terraform-ecs-from-git-repo
+name: terraform-ecs
 # The version of the service, the end-user can select the version they want to deploy.
-serviceVersion: 1.0.0
+serviceVersion: 1.0.2
 # For the users may have more than one service, the @namespace can be used to separate the clusters.
 description: This is an ehanced compute services by ISV-A.
 namespace: ISV-A
@@ -328,8 +328,11 @@ flavors:
 serviceProviderContactDetails:
   emails: [ "test@test.com" ]
 deployment:
-  # kind, Supported values are terraform, opentofu.
-  kind: terraform
+  deployerTool:
+    # kind, Supported values are terraform, opentofu.
+    kind: terraform
+    # version, the required version of the deployer tool for the deployer scripts.
+    version: "=1.6.0"
   serviceAvailabilityConfigs:
     - displayName: Availability Zone
       varName: availability_zone
@@ -397,6 +400,6 @@ deployment:
         isDataLost: false
         isServiceInterrupted: true
   scriptsRepo:
-    repoUrl: https://github.com/xpanse/xpanse-samples.git
+    repoUrl: https://github.com/eclipse-xpanse/xpanse-samples.git
     branch: main
     scriptsPath: scripts/huaweicloud/compute/ecs
