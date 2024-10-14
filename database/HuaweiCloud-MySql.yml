@@ -160,7 +160,7 @@ deployment:
     kind: terraform
     # version, the required version of the deployer tool for the deployer scripts.
     version: "=1.6.0"
-  serviceAvailabilityConfigs:
+  serviceAvailabilityConfig:
     - displayName: Primary AZ
       varName: primary_az
       mandatory: true
