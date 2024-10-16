@@ -605,7 +605,7 @@ deployment:
     
     resource "huaweicloud_vpc_eip" "eip-tf" {
        publicip {
-         type = "5_sbgp"
+         type = var.region == "eu-west-101" ? "5_bgp" : "5_sbgp"
       }
       bandwidth {
         name        = "eip-tf-${random_id.new.hex}"
