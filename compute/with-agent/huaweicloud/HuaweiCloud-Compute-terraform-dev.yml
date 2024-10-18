@@ -419,6 +419,6 @@ deployment:
         isDataLost: false
         isServiceInterrupted: true
   scriptsRepo:
-    repoUrl: https://github.com/swaroopar/xpanse-samples
+    repoUrl: https://github.com/eclipse-xpanse/xpanse-samples
     branch: main
     scriptsPath: compute/with-agent/huaweicloud/terraform
