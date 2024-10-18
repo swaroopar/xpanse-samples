@@ -324,6 +324,6 @@ deployment:
         isDataLost: true
         isServiceInterrupted: true
   scriptsRepo:
-    repoUrl: https://github.com/swaroopar/xpanse-samples
-    branch: feature/addAllAgentVars
+    repoUrl: https://github.com/eclipse-xpanse/xpanse-samples
+    branch: main
     scriptsPath: middleware/with-agent/kafka/huaweicloud/terraform
