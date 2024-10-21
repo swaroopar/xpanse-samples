@@ -62,7 +62,7 @@ flavors:
         isPriceOnlyForManagementLayer: false
       # Properties for the service, which can be used by the deployment.
       properties:
-        flavor_name: SCS-4V:8:20
+        flavor_name: SCS-4V-8-20
       features:
         - High Availability
         - Maximum Performance
