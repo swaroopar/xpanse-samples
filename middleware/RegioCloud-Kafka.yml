@@ -19,9 +19,6 @@ cloudServiceProvider:
     - name: RegionA
       site: default
       area: Western Europe
-    - name: RegionTwo
-      site: default
-      area: Western Europe
 billing:
   # The supported mode of billing (`Fixed`, `Pay per Use`)
   billingModes:
@@ -220,7 +217,7 @@ deployment:
         minLength: 1
         maxLength: 256
       sensitiveScope: none
-      value: "https://keystone.services.a.regiocloud.tech"
+      value: "https://keystone.services.a.regiocloud.tech/v3"
       modificationImpact:
         isDataLost: true
         isServiceInterrupted: true
