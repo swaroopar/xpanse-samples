@@ -224,11 +224,13 @@ resource "huaweicloud_rds_mysql_account" "user" {
 resource "huaweicloud_rds_mysql_database_privilege" "privilege" {
   instance_id = huaweicloud_rds_instance.instance.id
   db_name     = var.db_name
-
   users {
     name     = var.user_name
     readonly = false
   }
+  depends_on = [
+    huaweicloud_rds_mysql_database.db, huaweicloud_rds_mysql_account.user
+  ]
 }
 
 resource "huaweicloud_rds_mysql_binlog" "test" {
@@ -241,7 +243,7 @@ output "rds_instance_public_ips" {
 }
 
 output "rds_instance_private_ips" {
-  value = huaweicloud_rds_instance.instance.private_ips
+  value = join(",", huaweicloud_rds_instance.instance.private_ips)
 }
 
 output "admin_passwd" {
