@@ -144,7 +144,7 @@ serviceConfigurationManage:
   type: ansible
   configManageScripts:
     # Should be the name available in the deployer script
-    - configManager: kafka-broker
+    - changeHandler: kafka-broker
       # Means should the configuration update run on each node of the specific component or just one.
       runOnlyOnce: false
       ansibleScriptConfig:
@@ -162,7 +162,7 @@ serviceConfigurationManage:
         galaxyFile: ""
         # Defines if we need a full inventory request.
         ansibleInventoryRequired: false
-    - configManager: zookeeper
+    - changeHandler: zookeeper
       # Means should the configuration update run on each node of the specific component or just one.
       runOnlyOnce: true
       ansibleScriptConfig:
