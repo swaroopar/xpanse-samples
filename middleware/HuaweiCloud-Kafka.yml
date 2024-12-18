@@ -254,6 +254,57 @@ serviceConfigurationManage:
         isDataLost: true
         isServiceInterrupted: true
       isReadOnly: false
+serviceActions:
+  - name: upgrade
+    type: ansible
+    actionManageScripts:
+      - changeHandler: kafka-broker
+        runOnlyOnce: false
+        ansibleScriptConfig:
+          playbookName: "middleware/ansible/kafka/kafka-container-manage.yml"
+          virtualEnv: ""
+          pythonVersion: "3.10"
+          repoUrl: https://github.com/eclipse-xpanse/xpanse-samples
+          branch: main
+          requirementsFile: "requirements.txt"
+          galaxyFile: ""
+          ansibleInventoryRequired: false
+    actionParameters:
+      - name: inter_broker_protocol_version
+        kind: variable
+        dataType: string
+        description: controls the protocol version used for communication between Kafka Brokers to ensure that the old and new versions of Brokers can communicate normally during the rolling upgrade process.
+        initialValue: 3.2
+        managedBy: 'kafka-broker'
+        modificationImpact:
+          isDataLost: true
+          isServiceInterrupted: true
+        isReadOnly: false
+  - name: backup
+    type: ansible
+    actionManageScripts:
+      - changeHandler: zookeeper
+        runOnlyOnce: true
+        ansibleScriptConfig:
+          playbookName: "middleware/ansible/kafka/kafka-container-manage.yml"
+          virtualEnv: ""
+          pythonVersion: "3.10"
+          repoUrl: https://github.com/eclipse-xpanse/xpanse-samples
+          branch: main
+          requirementsFile: "requirements.txt"
+          galaxyFile: ""
+          ansibleInventoryRequired: false
+    actionParameters:
+      - name: kafka_cfg_message_max_bytes
+        kind: variable
+        dataType: number
+        description: Parameters used to configure the Kafka server or client to set the maximum number of bytes for Kafka messages.
+        initialValue: 1048576
+        managedBy: 'kafka-broker'
+        modificationImpact:
+          isDataLost: true
+          isServiceInterrupted: true
+        isReadOnly: false
 deployment:
   deployerTool:
     # kind, Supported values are terraform, opentofu.
