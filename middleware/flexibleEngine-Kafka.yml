@@ -261,6 +261,7 @@ deployment:
       kind: variable
       dataType: string
       mandatory: false
+      sensitiveScope: always
       valueSchema:
         minLength: 8
         maxLength: 16
