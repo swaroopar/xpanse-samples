@@ -199,11 +199,11 @@ resource "huaweicloud_compute_eip_associate" "associated" {
   instance_id = huaweicloud_compute_instance.ecs-tf.id
 }
 
-output "ecs-host" {
+output "ecs_host" {
   value = huaweicloud_compute_instance.ecs-tf.access_ip_v4
 }
 
-output "ecs-public-ip" {
+output "ecs_public_ip" {
   value = huaweicloud_vpc_eip.eip-tf.address
 }
 
