@@ -371,7 +371,7 @@ deployment:
       kind: variable
       dataType: string
       mandatory: false
-      sensitiveScope: always
+      sensitiveScope: once
       valueSchema:
         minLength: 8
         maxLength: 16
@@ -423,7 +423,7 @@ deployment:
     - name: admin_passwd
       description: The admin password of the compute instance.
       dataType: string
-      sensitiveScope: always
+      sensitiveScope: once
     - name: ecs_host
       description: The host of the compute instance.
       dataType: string

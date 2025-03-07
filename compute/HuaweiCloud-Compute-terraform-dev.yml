@@ -349,7 +349,7 @@ eula: |
 deployment:
   deployerTool:
     # kind, Supported values are terraform, opentofu.
-    kind: opentofu
+    kind: terraform
     # version, the required version of the deployer tool for the deployment scripts.
     version: "=1.6.0"
   serviceAvailabilityConfig:
