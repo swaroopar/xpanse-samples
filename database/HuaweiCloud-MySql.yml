@@ -4,6 +4,8 @@ version: 1.0
 category: database
 # The Service provided by the ISV, the name will be shown on the console as a service.
 name: RDS-MySQL
+# The short code of the service provided by ISV. This will be used by the cloud provider internally.
+shortCode: sqldb
 # The version of the service, the end-user can select the version they want to deploy.
 serviceVersion: 1.0.0
 # For the users may have more than one service, the @serviceVendor can be used to separate the clusters.
@@ -423,7 +425,7 @@ deployment:
     # kind, Supported values are terraform, opentofu.
     kind: terraform
     # version, the required version of the deployer tool for executing the deployment scripts.
-    version: "=1.6.0"
+    version: "=1.8.0"
   serviceAvailabilityConfig:
     - displayName: Primary AZ
       varName: primary_az
@@ -750,6 +752,6 @@ deployment:
           value = join(",", huaweicloud_rds_instance.instance.private_ips)
         }
     
-        }
         output "admin_passwd" {
           value = var.admin_passwd == "" ? nonsensitive(local.admin_passwd) : local.admin_passwd
+        }
